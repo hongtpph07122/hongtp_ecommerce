@@ -2,6 +2,7 @@ package heroku.app.demo.Services.implService;
 
 import heroku.app.demo.DTOs.CategoryDTO;
 import heroku.app.demo.Entities.Category;
+import heroku.app.demo.Exceptions.ErrorMessage;
 import heroku.app.demo.HResponse.HResponse;
 import heroku.app.demo.Payload.PaginationDTO;
 import heroku.app.demo.Repositories.CategoryRepository;
@@ -35,5 +36,22 @@ public class CategoryServiceImpl implements CategoryService {
                 .map( category -> mapper.map(category, CategoryDTO.class))
                 .collect(Collectors.toList());
         return HResponse.buildHResponse(PaginationDTO.buildPaginationDTO(pageCategory, categoryDTOList));
+    }
+
+    @Override
+    public HResponse createOrUpdateCategory(CategoryDTO dto) {
+
+        if(dto.getParentId() != null){
+            Category category = categoryRepository.findByParentId(dto.getParentId());
+            if(category == null){
+                return HResponse.buildHResponse(ErrorMessage.CATEGORY_NOT_EXIST);
+            }
+        }else{
+            dto.setParentId((long) 0);
+        }
+
+        Category category1 = categoryRepository.save(mapper.map(dto, Category.class));
+
+        return HResponse.buildHResponse(category1);
     }
 }
