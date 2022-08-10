@@ -1,36 +1,14 @@
-GET http://localhost:8080/api/students/pageNum=1&pageSize=10&sortBy=fullName
-Accept: */*
-Cache-Control: no-cache
-
-### Get List Student
-
-POST http://localhost:8080/api/students
+POST http://localhost:8080/api/login
 Content-Type: application/json
 
 {
-   "code": "PH09199",
-   "fullName": "Hồng Tú",
-   "address": "Thái Bình",
-   "birthday": "2003-09-29",
-   "class_id": "2"
+  "username": "hongtpph07122",
+  "password": "context"
 }
 
-### AddOrUpdate Student
-
-GET http://localhost:8080/api/classes
+###
+GET http://localhost:8080/api/logup
 Accept: */*
 Cache-Control: no-cache
 
-### Get List Class
-
-
-
-POST http://localhost:8080/api/classes
-Content-Type: application/json
-
-{
-   "id": 3,
-   "name": "PT14303"
-}
-
-### AddOrUpdate Student
+###

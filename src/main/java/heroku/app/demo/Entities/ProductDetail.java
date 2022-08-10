@@ -22,10 +22,10 @@ public class ProductDetail {
     @Column( name = "image")
     private String image;
     @ManyToOne
-    @JoinColumn( name = "size_id")
+    @JoinColumn( name = "sizeId")
     private Size size;
     @ManyToOne
-    @JoinColumn( name = "color_id")
+    @JoinColumn( name = "colorId")
     private Color color;
 
 

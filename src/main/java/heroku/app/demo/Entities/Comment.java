@@ -18,9 +18,9 @@ public class Comment {
     private Long id;
     @Column( name = "content")
     private String content;
-    @Column( name = "created_date")
-    private Date created_date;
-    @Column( name = "parent_id")
-    private Long parent_id;
+    @Column( name = "createdDate")
+    private Date createdDate;
+    @Column( name = "parentId")
+    private Long parentId;
 
 }

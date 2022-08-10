@@ -18,7 +18,7 @@ public class Color {
     private Long id;
     @Column( name = "name" )
     private String name;
-    @Column ( name = "hex_code" )
+    @Column ( name = "hexCode" )
     private String hexCode;
     @OneToMany( mappedBy = "color", cascade = CascadeType.ALL)
     private List<ProductDetail> productDetails;

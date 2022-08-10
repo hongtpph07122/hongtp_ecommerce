@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table( name = "category")
@@ -20,8 +21,9 @@ public class Category {
     private String name;
     @Column ( name = "description" )
     private String description;
-    @Column ( name = "parent_id")
-    private Long parent_id;
+    @Column ( name = "parentId")
+    private Long parentId;
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<Product> products;
+
 }
