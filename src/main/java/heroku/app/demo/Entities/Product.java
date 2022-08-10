@@ -22,12 +22,12 @@ public class Product {
     @Column( name = "image")
     private String image;
     @ManyToOne
-    @JoinColumn( name = "category_id")
+    @JoinColumn( name = "categoryId")
     private Category category;
     @ManyToOne
-    @JoinColumn( name = "material_id")
+    @JoinColumn( name = "materialId")
     private Material material;
     @ManyToOne
-    @JoinColumn( name = "tag_id")
+    @JoinColumn( name = "tagId")
     private Tag tag;
 }
