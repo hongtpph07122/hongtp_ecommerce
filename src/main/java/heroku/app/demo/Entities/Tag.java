@@ -20,6 +20,8 @@ public class Tag {
     private String name;
     @Column ( name = "code" )
     private String code;
+    @Column( name = "isActive")
+    private int isActive;
     @OneToMany( mappedBy = "tag", cascade = CascadeType.ALL)
     private List<Product> products;
 }

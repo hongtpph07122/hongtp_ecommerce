@@ -20,6 +20,8 @@ public class Color {
     private String name;
     @Column ( name = "hexCode" )
     private String hexCode;
+    @Column( name = "isActive")
+    private int isActive;
     @OneToMany( mappedBy = "color", cascade = CascadeType.ALL)
     private List<ProductDetail> productDetails;
 }

@@ -14,10 +14,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -42,16 +40,22 @@ public class CategoryServiceImpl implements CategoryService {
     public HResponse createOrUpdateCategory(CategoryDTO dto) {
 
         if(dto.getParentId() != null){
-            Category category = categoryRepository.findByParentId(dto.getParentId());
+            Optional<Category> category = categoryRepository.findById(dto.getParentId());
             if(category == null){
                 return HResponse.buildHResponse(ErrorMessage.CATEGORY_NOT_EXIST);
             }
         }else{
             dto.setParentId((long) 0);
         }
-
+        if(dto.getId() != null) {
+            if(!categoryRepository.existsById(dto.getId())){
+                return HResponse.buildHResponse(ErrorMessage.CATEGORY_NOT_EXIST);
+            }
+        }else{
+            dto.setIsActive(1);
+        }
         Category category1 = categoryRepository.save(mapper.map(dto, Category.class));
 
-        return HResponse.buildHResponse(category1);
+        return HResponse.buildHResponse(category1, dto.getId()!=null?ErrorMessage.UPDATE_SUCCESS:ErrorMessage.CREATE_SUCCESS);
     }
 }
