@@ -21,6 +21,8 @@ public class Product {
     private String description;
     @Column( name = "image")
     private String image;
+    @Column( name = "isActive")
+    private int isActive;
     @ManyToOne
     @JoinColumn( name = "categoryId")
     private Category category;

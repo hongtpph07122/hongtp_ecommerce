@@ -20,6 +20,8 @@ public class Comment {
     private String content;
     @Column( name = "createdDate")
     private Date createdDate;
+    @Column( name = "isActive")
+    private int isActive;
     @Column( name = "parentId")
     private Long parentId;
 

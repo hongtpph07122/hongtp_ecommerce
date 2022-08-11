@@ -20,6 +20,8 @@ public class Material {
     private String name;
     @Column ( name = "description" )
     private String description;
+    @Column( name = "isActive")
+    private int isActive;
     @OneToMany( mappedBy = "material", cascade = CascadeType.ALL)
     private List<Product> products;
 }

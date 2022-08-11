@@ -23,6 +23,8 @@ public class Category {
     private String description;
     @Column ( name = "parentId")
     private Long parentId;
+    @Column( name = "isActive")
+    private int isActive;
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<Product> products;
 

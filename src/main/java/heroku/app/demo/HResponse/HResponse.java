@@ -24,6 +24,14 @@ public class HResponse<T> {
         hRespons.setMessage("success!");
         return hRespons;
     }
+    //
+    public static HResponse buildHResponse(Object data, String message){
+        HResponse hResponse = new HResponse<>();
+        hResponse.setMessage(message);
+        hResponse.setCode(200);
+        hResponse.setData(data);
+        return hResponse;
+    }
     //build Response with errorMessage
     public static HResponse<String> buildHResponse(ErrorMessage errorMessage) {
         HResponse<String> hResponse = new HResponse<>();

@@ -20,6 +20,8 @@ public class Size {
     private String name;
     @Column ( name = "description" )
     private String description;
+    @Column( name = "isActive")
+    private int isActive;
     @OneToMany(mappedBy = "size", cascade = CascadeType.ALL)
     private List<ProductDetail> productDetails;
 }

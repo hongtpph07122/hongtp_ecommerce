@@ -18,6 +18,7 @@ public class CategoryDTO {
     private String name;
     private String description;
     private Long parentId;
+    private int isActive;
     private Set<Category> childCategory;
     private List<Product> products;
 

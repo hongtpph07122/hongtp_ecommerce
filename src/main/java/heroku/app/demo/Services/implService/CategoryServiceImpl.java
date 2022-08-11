@@ -2,6 +2,7 @@ package heroku.app.demo.Services.implService;
 
 import heroku.app.demo.DTOs.CategoryDTO;
 import heroku.app.demo.Entities.Category;
+import heroku.app.demo.Exceptions.ErrorMessage;
 import heroku.app.demo.HResponse.HResponse;
 import heroku.app.demo.Payload.PaginationDTO;
 import heroku.app.demo.Repositories.CategoryRepository;
@@ -13,10 +14,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,5 +34,28 @@ public class CategoryServiceImpl implements CategoryService {
                 .map( category -> mapper.map(category, CategoryDTO.class))
                 .collect(Collectors.toList());
         return HResponse.buildHResponse(PaginationDTO.buildPaginationDTO(pageCategory, categoryDTOList));
+    }
+
+    @Override
+    public HResponse createOrUpdateCategory(CategoryDTO dto) {
+
+        if(dto.getParentId() != null){
+            Optional<Category> category = categoryRepository.findById(dto.getParentId());
+            if(category == null){
+                return HResponse.buildHResponse(ErrorMessage.CATEGORY_NOT_EXIST);
+            }
+        }else{
+            dto.setParentId((long) 0);
+        }
+        if(dto.getId() != null) {
+            if(!categoryRepository.existsById(dto.getId())){
+                return HResponse.buildHResponse(ErrorMessage.CATEGORY_NOT_EXIST);
+            }
+        }else{
+            dto.setIsActive(1);
+        }
+        Category category1 = categoryRepository.save(mapper.map(dto, Category.class));
+
+        return HResponse.buildHResponse(category1, dto.getId()!=null?ErrorMessage.UPDATE_SUCCESS:ErrorMessage.CREATE_SUCCESS);
     }
 }
