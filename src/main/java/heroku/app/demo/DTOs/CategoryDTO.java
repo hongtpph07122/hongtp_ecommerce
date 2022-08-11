@@ -19,7 +19,7 @@ public class CategoryDTO {
     private String description;
     private Long parentId;
     private int isActive;
-    private Set<Category> childCategory;
-    private List<Product> products;
+    private Set<CategoryDTO> childCategory;
+    private List<ProductDTO> products;
 
 }
