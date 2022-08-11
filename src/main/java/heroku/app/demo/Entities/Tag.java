@@ -16,10 +16,10 @@ public class Tag {
     @Id
     @GeneratedValue( strategy =  GenerationType.IDENTITY)
     private Long id;
-    @Column( name = "name" )
+    @Column( name = "name", unique = true)
     private String name;
-    @Column ( name = "code" )
-    private String code;
+    @Column ( name = "description" )
+    private String description;
     @Column( name = "isActive")
     private int isActive;
     @OneToMany( mappedBy = "tag", cascade = CascadeType.ALL)

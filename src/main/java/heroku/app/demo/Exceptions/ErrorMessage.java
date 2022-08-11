@@ -9,7 +9,8 @@ public enum ErrorMessage {
     UPDATE_FAILED(40404, "update_failed"),
     CREATE_FAILED(40405, "create_failed"),
     UPDATE_SUCCESS(20001, "update_success"),
-    CREATE_SUCCESS(20002, "create_success")
+    CREATE_SUCCESS(20002, "create_success"),
+    TAG_NOT_EXIST(40406, "tag_not_exist")
     ;
 
 
